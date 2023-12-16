@@ -1,0 +1,217 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  margin: 0;
+}
+
+.container {
+  padding: 10px;
+  background-color: white;
+  max-width: fit-content;
+  margin: 20px auto;
+}
+
+.btn {
+  border: none;
+  padding: 7px 15px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-add {
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: rgb(145, 194, 207);
+  border-radius: 5px;
+  position: absolute;
+  top: 150px;
+  right: 200px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.addContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: black;
+}
+
+.addContainer form {
+  width: 420px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 40px;
+  box-shadow: 5px 5px rgb(145, 194, 207);
+  border-radius: 5px;
+}
+
+.addContainer form label {
+  font-size: 10px;
+}
+
+.addContainer form input {
+  font-size: 16px; /* Adjusted font size */
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.addContainer form button {
+  background-color: rgb(145, 194, 207);
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.addContainer form .close-btn {
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: rgb(145, 194, 207);
+}
+
+.tableContainer {
+  margin-top: 50px;
+  box-shadow: 5px 5px 10px black;
+  border-radius: 5px;
+  /* width: 100%; */
+  width : 1000px;
+  overflow-x: auto;
+}
+
+.tableContainer table {
+  /* width:100%; */
+  width : 1000px;
+  border-collapse: collapse;
+  font-size: 16px; /* Adjusted font size */
+  padding: 8px; /* Adjusted padding */
+  border-spacing: 8px; /* Adjusted border spacing */
+}
+
+.tableContainer table thead tr {
+  background-color: rgb(145, 194, 207);
+}
+
+.tableContainer table thead tr th,
+.tableContainer table tbody tr td {
+  max-width: 500px;
+  padding: 12px; /* Adjusted padding */
+  text-align: center;
+}
+
+.tableContainer table tbody tr td {
+  border-bottom: 1px solid black;
+}
+
+.btn-edit,
+.btn-delete {
+  font-size: 14px; /* Adjusted font size */
+  padding: 5px 8px; /* Adjusted padding */
+  margin: 0px 8px;
+  background-color: rgb(145, 194, 207);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav_items {
+  margin-top: 50px;
+}
+
+.nav_items .navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(145, 194, 207);
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+}
+
+ul.navbar li a {
+  display: block;
+  color: #000000;
+  font-weight: 550;
+  padding: 10px 16px;
+  text-decoration: none;
+  justify-content: space-between;
+}
+
+ul.navbar li a:active {
+  font-weight: bolder;
+  font-size: large;
+}
+
+.nav_items .navbar li ul.dropdown-content li {
+  list-style: none;
+}
+
+.nav_items .navbar li ul.dropdown-content li a {
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+ul.navbar li .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f0f0f0;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+ul.navbar li:hover .dropdown-content {
+  display: block;
+  border-bottom: 3px solid black;
+}
+
+ul.navbar li .dropdown-content li {
+  display: inline-block;
+}
+
+ul.navbar li .dropdown-content li a {
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+ul.navbar li .dropdown-content li a:hover {
+  border-bottom: 3px solid black;
+  background-color: #ddd;
+}
+
+.dataContainer {
+  text-align: center;
+}
+
+
+
+
+
+
+      
