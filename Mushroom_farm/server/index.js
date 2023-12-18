@@ -68,10 +68,10 @@ app.post("/product/create",async(req,res)=>{
 //update data
 //http://localhost:8080/update
 app.put("/product/update",async(req,res)=>{
-    console.log(req.body)
+    console.log(req.body);
     const {_id,...rest} = req.body
 
-    console.log(rest)
+    
     const data = await Product.updateOne({_id : _id},rest)
     res.send({success : true,message : "data updated successfully", data : data})
 })

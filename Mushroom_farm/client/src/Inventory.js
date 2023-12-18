@@ -12,43 +12,58 @@ axios.defaults.baseURL = "http://localhost:8080/"
 function Inventory() {
 
   const [dataList, setDataList] = useState([]);
+  const [Alter,setAlter] = useState(0);
 
   const getFetchData = async () => {
     const data = await axios.get("/product");
-    console.log(data);
     if (data.data.success) {
       setDataList(data.data.data.map((item) => ({ ...item, num: 0 }))); // Assuming 'num' is initialized to 0.
+
     }
   };
   
+  const Alterdata = async (a)=>{
+    const data = await axios.put("/product/update",a);
+    console.log(data);
+  }
+
   useEffect(()=>{
-    getFetchData()
-  },[])
-  console.log(dataList)
+    getFetchData();
+  })
+
 
   const handleAdd = (id, value) => {
-    setDataList(prevDataList => {
-      return prevDataList.map(item => {
+    let a={};
+    setDataList(dataList => {
+      a = dataList.map(item => {
         if (item._id === id) {
-          return { ...item, num: item.num + value };
+          
+            return { ...item, volume: Number(item.volume) + Number(value) };
         }
-        return item;
+        Alterdata(a);
+        return a;
       });
     });
+    
   };
+
+
 
   const handleSubtract = (id, value) => {
-    setDataList(prevDataList => {
-      return prevDataList.map(item => {
+    let a={};
+    setDataList(dataList => {
+      a = dataList.map(item => {
         if (item._id === id) {
-          const newNum = item.num - value < 0 ? 0 : item.num - value;
-          return { ...item, num: newNum };
+          const newNum = Number(item.volume) - Number(value) < 0 ? 0 : Number(item.volume) - Number(value);
+          return { ...item, volume: newNum };
         }
-        return item;
+        Alterdata(a);
+        return a;
       });
     });
   };
 
+  
   return (
    <>
    <div className="nav_items">
@@ -110,23 +125,16 @@ function Inventory() {
               <td>{el.description}</td>
               <td>{el.deliveryTime}</td>
               <td>{el.schedule}</td>
-          {/* <td>
-          <NumberBox inputAttr={counter} />
-        <button className="btn btn-delete" onClick={() => setCounter( {el.volume}+ counter)}>
-            Add
-            </button>
-
-            <button className="btn btn-delete" onClick={() => setCounter({el.volume} + counter)}>
-            Minus
-            </button>
-            </td> */}
+          
 
 <td>
-                      <NumberBox value={el.num} onValueChanged={(e) => handleAdd(el._id, e.value)} />
-                      <button className="btn btn-delete" onClick={() => handleAdd(el._id, 1)}>
+                      <input type='number' value={Alter} onChange={(e) => {setAlter(e.target.value)
+                      console.log(e.target.value)}} />
+                      
+                      <button className="btn btn-delete" onClick={() => handleAdd(el._id, Alter)}>
                         Add
                       </button>
-                      <button className="btn btn-delete" onClick={() => handleSubtract(el._id, 1)}>
+                      <button className="btn btn-delete" onClick={() => handleSubtract(el._id, Alter)}>
                         Minus
                       </button>
                     </td>
