@@ -90,7 +90,7 @@ function AddDelivery() {
    <div className="nav_items">
         <ul className="navbar">
           <li className="dropdown">
-            <a href="/Dashboard">Dashboard</a>
+            <a href="/">Dashboard</a>
           </li>
 
           <li className="dropdown">

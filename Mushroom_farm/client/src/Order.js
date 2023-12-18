@@ -27,7 +27,7 @@ function App() {
    <div className="nav_items">
         <ul className="navbar">
           <li className="dropdown">
-            <a href="/Dashboard">Dashboard</a>
+            <a href="/">Dashboard</a>
           </li>
 
           <li className="dropdown">
@@ -72,6 +72,7 @@ function App() {
       {dataList && dataList.length>0 ? (
     dataList.map((el)=>(
       <tr key={el.user}>
+        <td>{el.user}</td>
         <td>{el.products}</td>
         <td>{el.shippingAddress}</td>
         <td>{el.paymentMethod}</td>

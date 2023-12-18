@@ -30,7 +30,7 @@ function App() {
     <div className="nav_items">
         <ul className="navbar">
           <li className="dropdown">
-            <a href="/Dashboard">Dashboard</a>
+            <a href="/">Dashboard</a>
           </li>
 
           <li className="dropdown">
@@ -64,11 +64,12 @@ function App() {
     <table>
       <thead>
         <tr>
-          <th>USER_ID</th>
+        
           <th>USER_NAME</th>
+          <th>EMAIL</th>
           <th>MObileNo</th>
           <th>Address</th>
-          <th>Status</th>
+          <th>Orders</th>
           {/* <th>Item_Details</th>
           <th>Qty</th>
           <th>Dplan</th>
@@ -81,8 +82,8 @@ function App() {
           dataList.map((el)=>(
             
               <tr key={el.name}>
+                <td>{el.name}</td>
                 <td>{el.email}</td>
-                <td>{el.password}</td>
                 <td>{el.phn}</td>
                 <td>{el.addresses}</td>
                 <td>{el.orders}</td>

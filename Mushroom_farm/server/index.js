@@ -31,6 +31,7 @@ const Sales = require("./models/order")
 // const Inventory = require("./models/inventory")
 const Complaint = require("./models/complaints")
 const DeliveryDetails = require("./models/deliveryDetails")
+const { restart } = require('nodemon')
 
 app.get("/deliveryDetails",async(req,res)=>{
     const data = await DeliveryDetails.find({})
@@ -43,47 +44,71 @@ app.get("/complaints",async(req,res)=>{
  res.json({success : true, data : data})
 })
 
-app.post("/product/upload",upload.single('file'),(req,res)=>{
-    console.log(req.file)
-})
-
-app.get("/product",async(req,res)=>{
-    const data = await Product.find({})
-   res.json({success : true, data : data})
-})
-
 
 
 //create data //save data to mongo
 //http://localhost:8080/create
-app.post("/product/create",async(req,res)=>{
-    console.log(req.body)
-    const data = new Product(req.body)
-    await data.save()
-    res.send({success : true,message : "data saved succesfully", data : data})
-})
+// app.put("/product/update", async (req, res) => {
+//     const { _id, ...rest } = req.body;
+//     const id = req.body[0]._id;
+//     const indexToUpdate =0;
+
+//     console.log('Request Body:', req.body);
+//     console.log('Rest:', rest);
+//     console.log(`Index to Update: ${indexToUpdate}`);
+
+//     try {
+//         // Fetch the current document from the database
+//         const currentDocument = await Product.find({});
+
+//         if(rest){
+//             console.log("rest.",rest);
+//             console.log("indexToUpdate ",indexToUpdate)
+
+//         // Log the previous value of the field
+//         const restAtIndex = rest[indexToUpdate];
+
+//         console.log(`Previous Value: ${currentDocument[indexToUpdate].volume} ** volume: `,rest[indexToUpdate]);
+
+
+//         if (restAtIndex && restAtIndex.volume !== undefined) {
+//             console.log("query")
+//             console.log(`${indexToUpdate}.volume`)
+//             console.log(id)
+//             const updateResult = await Product.updateOne(
+//                 { _id: id },
+//                 { $set: { [`volume`]: restAtIndex.volume } }
+//             );
+//             console.log("updateResult")
+//             console.log(updateResult)
+
+//             if (updateResult.modifiedCount > 0) {
+//                 return res.send({ success: true, message: `Data at index ${indexToUpdate} updated successfully` });
+
+//                 // Fetch the updated document from the database
+//                 // const updatedDocument = await Product.findById(_id);
+
+//                 // // Log the altered value of the field
+//                 // console.log(`Altered Value: ${updatedDocument[indexToUpdate].volume}`);
+//             } else {
+//                 return res.send({ success: false, message: `Data at index ${indexToUpdate} was not updated` });
+//             }
+//         } else {
+//             return res.send({ success: false, message: `Invalid data or volume undefined at index ${indexToUpdate}` });
+//         }
+//     }
+//     else{
+//         return res.send({ success: false, message: `Invalid data or volume undefined` });
+//     }
+//     } catch (err) {
+//         console.log(err);
+//         return res.status(500).send({ success: false, message: "Error updating data" });
+//     }
+// });
 
 
 
-//update data
-//http://localhost:8080/update
-app.put("/product/update",async(req,res)=>{
-    console.log(req.body);
-    const {_id,...rest} = req.body
 
-    
-    const data = await Product.updateOne({_id : _id},rest)
-    res.send({success : true,message : "data updated successfully", data : data})
-})
-
-//delete
-//http://localhost:8080/delete
-app.delete("/product/delete/:id",async(req,res)=>{
-   const id =  req.params.id
-   console.log(id)
-   const data = await Product.deleteOne({_id : id})
-   res.send({success : true,message : "data deleted successfully", data : data})
-})
 
 //read
 app.get("/delivery",async(req,res)=>{
@@ -149,3 +174,47 @@ console.log("Connected to DB")
 app.listen(PORT,()=>console.log("Sever is running"))
 })
 .catch((err)=>console.log(err))
+
+
+//product entry
+app.post("/product/upload",upload.single('file'),(req,res)=>{
+    console.log(req.file)
+})
+
+app.get("/product",async(req,res)=>{
+    const data = await Product.find({})
+   res.json({success : true, data : data})
+})
+
+
+
+//create data //save data to mongo
+//http://localhost:8080/create
+app.post("/product/create",async(req,res)=>{
+    console.log(req.body)
+    const data = new Product(req.body)
+    await data.save()
+    res.send({success : true,message : "data saved succesfully", data : data})
+})
+
+
+
+//update data
+//http://localhost:8080/update
+app.put("/product/update",async(req,res)=>{
+    console.log(req.body)
+    const {_id,...rest} = req.body
+
+    console.log(rest)
+    const data = await Product.updateOne({_id : _id},rest)
+    res.send({success : true,message : "data updated successfully", data : data})
+})
+
+//delete
+//http://localhost:8080/delete
+app.delete("/product/delete/:id",async(req,res)=>{
+   const id =  req.params.id
+   console.log(id)
+   const data = await Product.deleteOne({_id : id})
+   res.send({success : true,message : "data deleted successfully", data : data})
+})

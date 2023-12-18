@@ -32,7 +32,7 @@ function Complaint() {
    <div className="nav_items">
         <ul className="navbar">
           <li className="dropdown">
-            <a href="/Dashboard">Dashboard</a>
+            <a href="/">Dashboard</a>
           </li>
 
           <li className="dropdown">
@@ -76,6 +76,7 @@ function Complaint() {
   {dataList && dataList.length>0 ? (
     dataList.map((el)=>(
      <tr key={el.email}>
+      <td>{el.email}</td>
         <td>{el.typeOfComplaint}</td>
         <td>{el.issueDate}</td>
         <td>{el.detailsOfIssue}</td>
